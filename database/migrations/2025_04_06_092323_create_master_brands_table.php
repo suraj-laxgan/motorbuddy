@@ -20,7 +20,6 @@ class CreateMasterBrandsTable extends Migration
             $table->tinyInteger('status')->comment('1: Enabled, 2: Disabled')->default(1);   
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 
