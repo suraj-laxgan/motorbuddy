@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateServiceCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('service_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedMediumInteger('parent_service_category_id')->default(0);
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('profile_img')->nullable();
+            $table->string('logo');
             $table->tinyInteger('status')->comment('1: Enabled, 2: Disabled')->default(1);   
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-            // $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
-
         });
     }
 
@@ -37,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('service_categories');
     }
 }
